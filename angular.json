@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "runApi": {
+    "api-doc-interpreter": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -39,7 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/runApi",
+            "outputPath": "dist/api-doc-interpreter",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -95,10 +95,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "runApi:build:production"
+              "browserTarget": "api-doc-interpreter:build:production"
             },
             "development": {
-              "browserTarget": "runApi:build:development"
+              "browserTarget": "api-doc-interpreter:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -106,7 +106,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "runApi:build"
+            "browserTarget": "api-doc-interpreter:build"
           }
         },
         "test": {
@@ -132,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "runApi"
+  "defaultProject": "api-doc-interpreter"
 }
