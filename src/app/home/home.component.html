@@ -1,0 +1,14 @@
+<section class="content centered" appDad (fileDropped)="onFileDropped($event)">
+    <div class="flex column">
+        <div class="centered">
+            <button mat-flat-button color="primary" (click)="fileInput.click()">
+                <mat-icon>file_upload</mat-icon>
+                Schema JSON
+            </button>
+            <input type="file" hidden #fileInput (change)="onFileLoad($event)">
+        </div>
+        <ng-container *ngIf="error$ | async as error">
+            <p>{{ error }}</p>
+        </ng-container>
+    </div>
+</section>

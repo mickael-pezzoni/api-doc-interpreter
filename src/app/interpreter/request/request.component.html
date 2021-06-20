@@ -1,0 +1,37 @@
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <p class="request" [class]="request.method | lowercase">{{ request.method }}</p>
+            <p class="path">{{ request.path | pathTransform}}</p>
+            <p class="name">{{ request.name }}</p>
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <section>
+        <div class="flex params-root">
+            <div class="request-params params flex column" *ngIf="request.paramsUri?.length">
+                <span class="bold">Paramètre de requête :</span>
+                <mat-form-field appearance="fill" *ngFor="let param of request.paramsUri;let i = index">
+                    <mat-label>Agument {{ i + 1 }}</mat-label>
+                    <input required matInput [(ngModel)]="argument[i]">
+                </mat-form-field>
+            </div>
+            <div class="query-params params flex column" *ngIf="request.params?.length">
+                <span class="bold">Paramètre de nommé :</span>
+                <mat-form-field appearance="fill" *ngFor="let param of request.params;let i = index">
+                    <mat-label>{{ param.key }}</mat-label>
+                    <input required matInput [(ngModel)]="params[i]">
+                </mat-form-field>
+            </div>
+        </div>
+        <app-body *ngIf="hasBody()" [schema]="request.rawParams"></app-body>
+        <app-response [response]="response$" [loading]="loading"></app-response>
+        <div>
+            <button mat-raised-button color="primary" (click)="execRequest()">
+                <mat-icon>send</mat-icon>
+                Exécuter
+            </button>
+        </div>
+    </section>
+</mat-expansion-panel>

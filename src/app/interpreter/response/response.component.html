@@ -1,0 +1,12 @@
+<pre class="response" *ngIf="response$ | async as response;">
+        <button class="btn-copy" matTooltip="Copier" [cdkCopyToClipboard]="response | json | toString" mat-button>
+            <mat-icon>content_copy</mat-icon>
+        </button>
+    {{ response | json }}
+</pre>
+<pre class="response error" *ngIf="error">
+{{ error | json }}
+</pre>
+<ng-container *ngIf="loading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-container>

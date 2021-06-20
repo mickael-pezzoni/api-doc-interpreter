@@ -1,0 +1,49 @@
+.request {
+  color: white;
+  border-radius: 25px;
+  width: 60px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.get {
+  background-color: rgb(22, 106, 155);
+}
+
+.post {
+  background-color: rgb(133, 207, 72);
+}
+
+.delete {
+  background-color: rgb(236, 83, 83);
+}
+
+.put {
+  background-color: orange;
+}
+
+.path {
+  width: 300px;
+}
+
+.params {
+  width: 300px;
+}
+
+p {
+  margin: 0px;
+  padding: 4px;
+}
+
+.params-root {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.params {
+  margin: 1px;
+}

@@ -1,0 +1,18 @@
+.response {
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: rgb(10, 82, 92);
+  color: white;
+  border-radius: 15px;
+  position: relative;
+}
+
+.error {
+  color: red;
+}
+
+.btn-copy {
+  position: absolute;
+  top: 6px;
+  right: 0px;
+}

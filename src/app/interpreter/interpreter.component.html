@@ -1,0 +1,12 @@
+<section>
+    <ng-container *ngIf="collections$ | async as collections">
+        <mat-list *ngFor="let collection of collections;trackBy: trackByFn">
+            <mat-list-item>{{ collection.name }}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+                <app-request *ngFor="let request of collection.requests;trackBy: trackByFn" [request]="request">
+                </app-request>
+            </mat-accordion>
+        </mat-list>
+    </ng-container>
+</section>
