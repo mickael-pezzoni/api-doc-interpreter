@@ -17,4 +17,8 @@ export class LocalStorageService {
   setItem(key: string, item: unknown): void {
     window.localStorage.setItem(key, JSON.stringify(item));
   }
+
+  clearItem(): void {
+    window.localStorage.clear();
+  }
 }

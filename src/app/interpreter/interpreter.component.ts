@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { Request, RootObject } from '../interface/hopp-scotch-collection';
@@ -11,8 +12,10 @@ import { HoppScotchService } from '../service/hoppscotch.service';
 })
 export class InterpreterComponent implements OnInit {
 
-  collections$: Observable<RootObject[]>;
-  constructor(private readonly hoppscotchService: HoppScotchService) {
+  collections$: Observable<RootObject[] | undefined>;
+  constructor(
+    private readonly hoppscotchService: HoppScotchService,
+    private readonly routes: Router) {
     this.collections$ = this.hoppscotchService.hoppColection$
   }
 
@@ -21,6 +24,11 @@ export class InterpreterComponent implements OnInit {
 
   trackByFn(index: number, request: Request | RootObject): number {
     return index;
+  }
+
+  previous(): void {
+    this.hoppscotchService.cleanSchema();
+    this.routes.navigate(['/']);
   }
 
 }

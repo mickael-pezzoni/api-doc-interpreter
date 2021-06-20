@@ -1,3 +1,9 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="previous()">
+        <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <span>Interpréteur</span>
+</mat-toolbar>
 <section>
     <ng-container *ngIf="collections$ | async as collections">
         <mat-list *ngFor="let collection of collections;trackBy: trackByFn">

@@ -9,10 +9,11 @@ import { ResponseComponent } from './response/response.component';
 import { BodyComponent } from './body/body.component';
 import { FormsModule } from '@angular/forms';
 import { ToStringPipe } from './pipe/to-string.pipe';
+import { SchemaGuard } from '../core/guard/schema.guard';
 
 
 const routes: Routes = [
-  { path: '', component: InterpreterComponent }
+  { path: '', component: InterpreterComponent, canActivate: [SchemaGuard] }
 ]
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    // CoreModule,
     SharedModule,
     FormsModule,
     RouterModule.forChild(routes)

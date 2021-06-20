@@ -12,10 +12,11 @@ import { DadDirective } from './directives/dad.directive';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NotSchemaGuard } from './core/guard/not-schema.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [NotSchemaGuard] },
   { path: 'interpreter', loadChildren: () => import('./interpreter/interpreter.module').then(m => m.InterpreterModule) }
 ]
 

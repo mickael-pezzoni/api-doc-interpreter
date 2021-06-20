@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { LocalStorageService } from '../core/service/local-storage.service';
 import { RootObject } from '../interface/hopp-scotch-collection';
 import { HoppScotchService } from '../service/hoppscotch.service';
 
@@ -9,13 +11,22 @@ import { HoppScotchService } from '../service/hoppscotch.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   private readonly errorSubject$ = new Subject<string>();
   error$ = this.errorSubject$.asObservable();
+  private readonly isDestroyed$ = new Subject<boolean>();
   constructor(
     private readonly hoppScotchService: HoppScotchService,
-    private readonly router: Router) { }
+    private readonly router: Router) {
+    // this.hoppScotchService.hoppColection$
+    //   .pipe(takeUntil(this.isDestroyed$))
+    //   .subscribe(res => {
+    //     if (res !== undefined) {
+    //       this.router.navigate(['interpreter']);
+    //     }
+    //   })
+  }
 
   ngOnInit(): void {
   }
@@ -77,4 +88,8 @@ export class HomeComponent implements OnInit {
     return file?.type.includes('json') ?? false;
   }
 
+  ngOnDestroy(): void {
+    this.isDestroyed$.next(true);
+    this.isDestroyed$.complete();
+  }
 }

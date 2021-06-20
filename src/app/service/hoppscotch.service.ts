@@ -10,15 +10,14 @@ import { Request, RootObject } from '../interface/hopp-scotch-collection';
 export class HoppScotchService {
 
   private readonly hoppKey = 'hoppCollections';
-  private readonly hoppCollectionSubject$ = new ReplaySubject<RootObject[]>(1);
+  private readonly hoppCollectionSubject$ = new ReplaySubject<RootObject[] | undefined>(1);
   hoppColection$ = this.hoppCollectionSubject$.asObservable();
   constructor(
     private readonly localStorageService: LocalStorageService,
   ) {
     const fileStorage = this.localStorageService.getItems(this.hoppKey) as RootObject[];
-    if (fileStorage !== undefined) {
-      this.hoppCollectionSubject$.next(fileStorage);
-    }
+    this.hoppCollectionSubject$.next(fileStorage);
+
   }
 
 
@@ -61,6 +60,11 @@ export class HoppScotchService {
       }
       return p;
     }).filter(arg => arg.includes('arg')).length;
+  }
+
+  cleanSchema(): void {
+    this.hoppCollectionSubject$.next(undefined);
+    this.localStorageService.clearItem();
   }
 
 
