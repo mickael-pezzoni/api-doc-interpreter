@@ -14,7 +14,10 @@ export class ResponseComponent implements OnInit {
   response$!: Observable<unknown> | undefined;
   @Input() set response(res: Observable<unknown> | undefined) {
     this.response$ = res?.pipe(
-      tap(() => this.loading = false),
+      tap(() => {
+        this.loading = false;
+        this.error = undefined;
+      }),
       catchError(err => {
         this.loading = false
         this.error = err as Error;
